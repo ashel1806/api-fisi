@@ -1,0 +1,53 @@
+{
+  "cursos": [
+    {
+      "id": 1,
+      "nombre" : "Mate Discreta",
+      "profesor": "Moquillaza",
+      "ciclo": 4,
+      "creditos": 3
+    },
+    {
+      "id": 2,
+      "nombre" : "Sistemas Digitales",
+      "profesor": "Fermin",
+      "ciclo": 4,
+      "creditos": 3
+    },
+    {
+      "id": 3,
+      "nombre" : "Algoritmica 2",
+      "profesor": "Cabrera",
+      "ciclo": 4,
+      "creditos": 4
+    },
+    {
+      "id": 4,
+      "nombre" : "Probabilidades",
+      "profesor": "Gatorate",
+      "ciclo": 4,
+      "creditos": 3
+    },
+    {
+      "id": 5,
+      "nombre" : "Emprendimiento e Innovación",
+      "profesor": "Machado",
+      "ciclo": 4,
+      "creditos": 3
+    },
+    {
+      "id": 6,
+      "nombre" : "Procesos Software",
+      "profesor": "Pantoja",
+      "ciclo": 4,
+      "creditos": 3
+    },
+    {
+      "id": 7,
+      "nombre" : "Contabilidad",
+      "profesor": "Fausto",
+      "ciclo": 4,
+      "creditos": 3
+    }
+  ]
+}

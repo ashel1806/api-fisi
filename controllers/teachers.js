@@ -28,6 +28,8 @@ teachersRouter.post('/', async (req, res) => {
     facultad: body.facultad
   })
 
+  console.log(teacher)
+
   const savedTeacher = await teacher.save()
   res.json(savedTeacher.toJSON())
 })

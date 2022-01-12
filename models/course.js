@@ -5,7 +5,6 @@ const schema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 5,
-    unique: true
   },
   profesores: [
     {
@@ -21,10 +20,7 @@ const schema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  sylabus: {
-    type: String,
-    unique: true,
-  }
+  sylabus: String
 })
 
 schema.set('toJSON', {

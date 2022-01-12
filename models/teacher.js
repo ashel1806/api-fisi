@@ -13,13 +13,11 @@ const schema = new mongoose.Schema({
   correo: {
     type: String,
     minlength: 5,
-    unique: true,
     match: /.+\@.+\..+/
   },
   facultad: {
     type: String,
     minlength: 2,
-    unique: true
   },
   cursos: [
     {

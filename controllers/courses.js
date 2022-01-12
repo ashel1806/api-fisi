@@ -29,7 +29,7 @@ coursesRouter.post('/', async (req, res) => {
 
   const course = new Course({
     nombre: body.nombre,
-    profesores: teachers.map(t => t._id),
+    profesores: teachers.map(t => t.id),
     ciclo: body.ciclo,
     creditos: body.creditos || 0,
     sylabus: body.sylabus
@@ -37,7 +37,7 @@ coursesRouter.post('/', async (req, res) => {
 
   const savedCourse = await course.save()
   teachers = teachers.map(teacher => {
-    teacher.cursos = teacher.cursos.concat(savedCourse._id)
+    teacher.cursos = teacher.cursos.concat(savedCourse.id)
     return teacher
   })
   console.log(teachers)

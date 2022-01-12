@@ -24,7 +24,6 @@ teachersRouter.post('/', async (req, res) => {
   const teacher = new Teacher({
     nombres: body.nombres,
     apellidos: body.apellidos,
-    telefono: body.telefono,
     correo: body.correo,
     facultad: body.facultad
   })
@@ -45,7 +44,6 @@ teachersRouter.put('/:id', async (req, res) => {
   const teacher = {
     nombres: body.nombres,
     apellidos: body.apellidos,
-    telefono: body.telefono,
     correo: body.correo,
     facultad: body.facultad,
     cursos: body.cursos

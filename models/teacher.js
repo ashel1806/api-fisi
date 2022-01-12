@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const uniqueValidator = require('mongoose-unique-validator')
 
 const schema = new mongoose.Schema({
   nombres: {
@@ -10,11 +9,6 @@ const schema = new mongoose.Schema({
   apellidos: {
     type: String,
     minlength: 3
-  },
-  telefono: {
-    type: String,
-    minlength: 9,
-    unique: true
   },
   correo: {
     type: String,
@@ -35,6 +29,11 @@ const schema = new mongoose.Schema({
   ]
 })
 
-schema.plugin(uniqueValidator)
+schema.set('toJSON', {
+  transform: (document, returnedObject) => {
+    returnedObject.id = returnedObject._id.toString()
+    delete returnedObject.__v
+  }
+})
 
 module.exports = mongoose.model('Teacher', schema)

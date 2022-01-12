@@ -40,6 +40,7 @@ coursesRouter.post('/', async (req, res) => {
     teacher.cursos = teacher.cursos.concat(savedCourse._id)
     return teacher
   })
+  console.log(teachers)
   await Promise.all(teachers.map(async t => await t.save()))
 
   res.json(savedCourse.toJSON())

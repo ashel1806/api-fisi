@@ -4,13 +4,17 @@ const { tokenExtractor } = require('../utils/middleware')
 
 teachersRouter.get('/', async (req, res) => {
   const teachers = await Teacher
-    .find({}).populate('cursos')
+    .find({}).populate('cursos', {
+      nombre: 1, creditos: 1, ciclo: 1, sylabus: 1
+    })
 
   res.json(teachers.map(teacher => teacher.toJSON()))
 })
 
 teachersRouter.get('/:id', async (req, res) => {
-  const teacher = await Teacher.findById(req.params.id)
+  const teacher = await Teacher.findById(req.params.id).populate('cursos', {
+    nombre: 1, creditos: 1, ciclo: 1, sylabus: 1
+  })
 
   if (teacher) {
     res.json(teacher.toJSON())
@@ -28,8 +32,6 @@ teachersRouter.post('/', tokenExtractor ,async (req, res) => {
     correo: body.correo,
     facultad: body.facultad
   })
-
-  console.log(teacher)
 
   const savedTeacher = await teacher.save()
   res.json(savedTeacher.toJSON())

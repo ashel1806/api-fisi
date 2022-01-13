@@ -5,14 +5,17 @@ const { tokenExtractor } = require('../utils/middleware')
 
 coursesRouter.get('/', async (req, res) => {
   const courses = await Course
-    .find({}).populate('profesores')
+    .find({}).populate('profesores', {
+      nombres: 1, apellidos: 1, correo: 1, facultad: 1
+    })
   
   res.json(courses.map(course => course.toJSON()))
 })
 
 coursesRouter.get('/:id', async (req, res) => {
-  const course = await Course.findById(req.params.id)
-  console.log(req.user)
+  const course = await Course.findById(req.params.id).populate('profesores', {
+    nombres: 1, apellidos: 1, correo: 1, facultad: 1
+  })
 
   if (course) {
     res.json(course.toJSON())

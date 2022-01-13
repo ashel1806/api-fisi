@@ -1,5 +1,6 @@
 const teachersRouter = require('express').Router()
 const Teacher = require('../models/teacher')
+const { tokenExtractor } = require('../utils/middleware')
 
 teachersRouter.get('/', async (req, res) => {
   const teachers = await Teacher
@@ -18,7 +19,7 @@ teachersRouter.get('/:id', async (req, res) => {
   }
 })
 
-teachersRouter.post('/', async (req, res) => {
+teachersRouter.post('/', tokenExtractor ,async (req, res) => {
   const body = req.body
 
   const teacher = new Teacher({
@@ -34,12 +35,12 @@ teachersRouter.post('/', async (req, res) => {
   res.json(savedTeacher.toJSON())
 })
 
-teachersRouter.delete('/:id', async (req, res) => {
+teachersRouter.delete('/:id', tokenExtractor, async (req, res) => {
   await Teacher.findByIdAndRemove(req.params.id)
   res.status(204).end()
 })
 
-teachersRouter.put('/:id', async (req, res) => {
+teachersRouter.put('/:id', tokenExtractor, async (req, res) => {
   const id = req.params.id
   const body = req.body
 

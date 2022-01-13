@@ -1,6 +1,7 @@
 const coursesRouter = require('express').Router()
 const Course = require('../models/course')
 const Teacher = require('../models/teacher')
+const { tokenExtractor } = require('../utils/middleware')
 
 coursesRouter.get('/', async (req, res) => {
   const courses = await Course
@@ -11,6 +12,7 @@ coursesRouter.get('/', async (req, res) => {
 
 coursesRouter.get('/:id', async (req, res) => {
   const course = await Course.findById(req.params.id)
+  console.log(req.user)
 
   if (course) {
     res.json(course.toJSON())
@@ -19,7 +21,7 @@ coursesRouter.get('/:id', async (req, res) => {
   }
 })
 
-coursesRouter.post('/', async (req, res) => {
+coursesRouter.post('/', tokenExtractor ,async (req, res) => {
   const body = req.body
 
   let teachers = await Promise.all(body.profesores.map(async id => {
@@ -46,12 +48,12 @@ coursesRouter.post('/', async (req, res) => {
   res.json(savedCourse.toJSON())
 })
 
-coursesRouter.delete('/:id', async (req, res) => {
+coursesRouter.delete('/:id', tokenExtractor ,async (req, res) => {
   await Course.findByIdAndRemove(req.params.id)
   res.status(204).end()
 })
 
-coursesRouter.put('/:id', async (req, res) => {
+coursesRouter.put('/:id', tokenExtractor ,async (req, res) => {
   const id = req.params.id
   const body = req.body
 

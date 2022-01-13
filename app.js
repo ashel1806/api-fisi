@@ -6,6 +6,8 @@ const cors = require('cors')
 
 const coursesRouter = require('./controllers/courses')
 const teachersRouter = require('./controllers/teachers')
+const usersRouter = require('./controllers/users')
+const loginRouter = require('./controllers/login')
 
 const middleware = require('./utils/middleware')
 const logger = require('./utils/logger')
@@ -26,6 +28,8 @@ app.use(middleware.requestLogger)
 
 app.use('/api/cursos', coursesRouter)
 app.use('/api/profesores', teachersRouter)
+app.use('/auth/register', usersRouter)
+app.use('/auth/login', loginRouter)
 
 app.use(middleware.unknowEndpoint)
 app.use(middleware.errorHandler)

@@ -23,8 +23,6 @@ Obtener un `Profesor` por `:id`
   facultad: "FISI",
   cursos: [
     "61de823af2d73d8895658ed5",
-    "61dfa5fc2061c980e9975708",
-    "61dfa945852bd1b636ff22e2"
   ],
   id: "61de80c6f2d73d8895658ec3"
 }

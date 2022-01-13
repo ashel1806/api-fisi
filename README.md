@@ -52,3 +52,5 @@ Obtener un `Curso` por `:id`
   id: "61de823af2d73d8895658ed5"
 }
 ```
+
+#### _NOTA: Si estas accediendo a los endpoints desde el navegador, probablemente necesites [esta extensión](https://chrome.google.com/webstore/detail/json-viewer/gbmdgpbipfallnflgajpaliibnhdgobh?hl=es)_

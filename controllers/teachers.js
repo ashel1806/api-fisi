@@ -1,6 +1,8 @@
 const teachersRouter = require('express').Router()
 const Teacher = require('../models/teacher')
 const { tokenExtractor } = require('../utils/middleware')
+const cloudinary = require('../utils/cloudinary.config')
+const upload = require('../utils/multer')
 
 teachersRouter.get('/', async (req, res) => {
   const teachers = await Teacher
@@ -23,14 +25,18 @@ teachersRouter.get('/:id', async (req, res) => {
   }
 })
 
-teachersRouter.post('/', tokenExtractor ,async (req, res) => {
+teachersRouter.post('/', tokenExtractor, upload.single('image'), async (req, res) => {
   const body = req.body
+  console.log(req);
+
+  const imageInfo = await cloudinary.uploader.upload(req.file.path)
 
   const teacher = new Teacher({
     nombres: body.nombres,
     apellidos: body.apellidos,
     correo: body.correo,
-    facultad: body.facultad
+    facultad: body.facultad,
+    imagen: imageInfo.secure_url
   })
 
   const savedTeacher = await teacher.save()

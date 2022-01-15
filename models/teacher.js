@@ -19,6 +19,10 @@ const schema = new mongoose.Schema({
     type: String,
     minlength: 2,
   },
+  imagen: {
+    type: String,
+    default: 'No Disponible'
+  },
   cursos: [
     {
       type: mongoose.Schema.Types.ObjectId,

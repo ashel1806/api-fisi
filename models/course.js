@@ -20,7 +20,11 @@ const schema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  sylabus: String
+  sylabus: String,
+  categoria: {
+    type: String,
+    default: 'Sin categoría'
+  }
 })
 
 schema.set('toJSON', {

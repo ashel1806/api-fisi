@@ -37,7 +37,8 @@ coursesRouter.post('/', tokenExtractor ,async (req, res) => {
     profesores: teachers.map(t => t.id),
     ciclo: body.ciclo,
     creditos: body.creditos || 0,
-    sylabus: body.sylabus
+    sylabus: body.sylabus,
+    categoria: body.categoria
   })
 
   const savedCourse = await course.save()

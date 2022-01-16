@@ -26,6 +26,8 @@ app.use(cors())
 app.use(express.json())
 app.use(middleware.requestLogger)
 
+app.use(express.static('build'))
+
 app.use('/api/cursos', coursesRouter)
 app.use('/api/profesores', teachersRouter)
 app.use('/auth/register', usersRouter)

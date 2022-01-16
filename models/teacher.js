@@ -21,7 +21,7 @@ const schema = new mongoose.Schema({
   },
   imagen: {
     type: String,
-    default: 'No Disponible'
+    default: 'https://res.cloudinary.com/ashel-root/image/upload/v1642319099/Profesores/default_fvdimb.jpg'
   },
   cursos: [
     {

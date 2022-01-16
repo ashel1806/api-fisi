@@ -48,16 +48,18 @@ teachersRouter.delete('/:id', tokenExtractor, async (req, res) => {
   res.status(204).end()
 })
 
-teachersRouter.put('/:id', tokenExtractor, async (req, res) => {
+teachersRouter.put('/:id', tokenExtractor, upload.single('image'), async (req, res) => {
   const id = req.params.id
   const body = req.body
+
+  const newImageInfo = await cloudinary.uploader.upload(req.file.path)
 
   const teacher = {
     nombres: body.nombres,
     apellidos: body.apellidos,
     correo: body.correo,
     facultad: body.facultad,
-    cursos: body.cursos
+    imagen: newImageInfo.secure_url
   }
 
   const updatedTeacher = await Teacher.findByIdAndUpdate(id, teacher, { new: true })

@@ -64,8 +64,10 @@ coursesRouter.put('/:id', tokenExtractor ,async (req, res) => {
   const course = {
     nombre: body.nombre,
     profesores: body.profesores,
+    sylabus: body.sylabus,
     creditos: body.creditos,
-    ciclo: body.ciclo
+    ciclo: body.ciclo,
+    categoria: body.categoria
   }
 
   const updatedCourse = await Course.findByIdAndUpdate(id, course, { new: true })

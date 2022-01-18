@@ -7,7 +7,7 @@ const upload = require('../utils/multer')
 teachersRouter.get('/', async (req, res) => {
   const teachers = await Teacher
     .find({}).populate('cursos', {
-      nombre: 1, creditos: 1, ciclo: 1, sylabus: 1
+      nombre: 1, creditos: 1, ciclo: 1, sylabus: 1, categoria: 1
     })
 
   res.json(teachers.map(teacher => teacher.toJSON()))
@@ -52,14 +52,19 @@ teachersRouter.put('/:id', tokenExtractor, upload.single('image'), async (req, r
   const id = req.params.id
   const body = req.body
 
-  const newImageInfo = await cloudinary.uploader.upload(req.file.path)
+  let newImageInfo
+  if (req.file) {
+    newImageInfo = await cloudinary.uploader.upload(req.file.path)
+  }
+
+  const imageUrl = newImageInfo ? newImageInfo.secure_url : body.imagen
 
   const teacher = {
     nombres: body.nombres,
     apellidos: body.apellidos,
     correo: body.correo,
     facultad: body.facultad,
-    imagen: newImageInfo.secure_url
+    imagen: imageUrl
   }
 
   const updatedTeacher = await Teacher.findByIdAndUpdate(id, teacher, { new: true })

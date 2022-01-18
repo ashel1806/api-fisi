@@ -6,7 +6,7 @@ const { tokenExtractor } = require('../utils/middleware')
 coursesRouter.get('/', async (req, res) => {
   const courses = await Course
     .find({}).populate('profesores', {
-      nombres: 1, apellidos: 1, correo: 1, facultad: 1
+      nombres: 1, apellidos: 1, correo: 1, facultad: 1, imagen: 1
     })
   
   res.json(courses.map(course => course.toJSON()))

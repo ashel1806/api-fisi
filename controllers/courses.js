@@ -24,6 +24,12 @@ coursesRouter.get('/:id', async (req, res) => {
   }
 })
 
+coursesRouter.get('/categorias/:categoria', async (req, res) => {
+  const courses = await Course.find({ categoria: req.params.categoria })
+
+  res.json(courses.map(course => course.toJSON()))
+})
+
 coursesRouter.post('/', tokenExtractor ,async (req, res) => {
   const body = req.body
 

@@ -25,6 +25,17 @@ teachersRouter.get('/:id', async (req, res) => {
   }
 })
 
+teachersRouter.get('/:id/cursos', async (req, res) => {
+  const teacher = await Teacher.findById(req.params.id)
+    .populate('cursos', { profesores: 0 })
+
+  if (teacher) {
+    res.json(teacher.cursos)
+  } else {
+    res.status(400).end()
+  }
+})
+
 teachersRouter.post('/', tokenExtractor, upload.single('image'), async (req, res) => {
   const body = req.body
   console.log(req);

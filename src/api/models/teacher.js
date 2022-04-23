@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const schema = new mongoose.Schema({
   nombres: {
@@ -39,4 +39,6 @@ schema.set('toJSON', {
   }
 })
 
-module.exports = mongoose.model('Teacher', schema)
+const Teacher = mongoose.model('Teacher', schema)
+
+export default Teacher

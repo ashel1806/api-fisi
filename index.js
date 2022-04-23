@@ -1,7 +1,10 @@
-const app = require('./app')
-const http = require('http')
-const config = require('./utils/config')
-const logger = require('./utils/logger')
+import http from 'http'
+
+import logger from './src/utils/logger.js'
+import config from './src/utils/config.js'
+
+import app from './src/app.js'
+
 
 const server = http.createServer(app)
 

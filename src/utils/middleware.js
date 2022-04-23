@@ -1,12 +1,14 @@
-const logger = require('./logger')
-const jwt = require('jsonwebtoken')
+import logger from './logger.js'
+import jwt from 'jsonwebtoken'
 
 const requestLogger = (req, res, next) => {
-  logger.info('Method: ', req.method)
-  logger.info('Path:   ', req.path)
-  logger.info('Body:   ', req.body)
-  logger.info('----')
-  next()
+  if (req) {
+    logger.info('Method: ', req.method)
+    logger.info('Path:   ', req.path)
+    logger.info('Body:   ', req.body)
+    logger.info('----')
+    next()
+  }
 }
 
 const unknowEndpoint = (req, res) => {
@@ -54,7 +56,7 @@ const tokenExtractor = (req, res, next) => {
   }
 }
 
-module.exports = {
+export {
   requestLogger,
   unknowEndpoint,
   errorHandler,

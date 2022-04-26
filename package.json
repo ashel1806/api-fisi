@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon node index.js",
+    "dev": "nodemon index.js",
     "start": "node index.js",
     "build:ui": "rm -rf build && cd /home/ashel/Escritorio/fisi-api-client && npm run build --prod && cp -r build /home/ashel/Escritorio/api-fisi",
     "deploy": "git push heroku main",
